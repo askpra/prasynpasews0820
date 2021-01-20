@@ -1,0 +1,10 @@
+{
+	"name": "prasynapsesa0820_MPE",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourceGroups/prasynapsergnew/providers/Microsoft.Storage/storageAccounts/prasynapsesa0820",
+		"groupId": "dfs",
+		"fqdns": [
+			"prasynapsesa0820.dfs.core.windows.net"
+		]
+	}
+}

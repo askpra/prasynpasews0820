@@ -1,0 +1,132 @@
+{
+	"name": "CopyPipeline_s0k",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_s0k",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "misc/employee/Samplesource.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.stupidtable"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink"
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PatientId",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Column1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DateOfBirth",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Column2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GenderType",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Column3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CreationDateUTC",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Column4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LastUpdatedDateUTC",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Column5",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_s0k",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_s0k",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-09-23T22:33:54Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

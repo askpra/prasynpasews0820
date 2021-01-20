@@ -1,0 +1,16 @@
+{
+	"name": "Ondemand working scenario",
+	"properties": {
+		"content": {
+			"query": " CREATE DATABASE ondemanddb;\n CREATE MASTER KEY;\n \n \n-- Create credential that will allow user to impersonate using Managed Identity assigned to workspace\nCREATE DATABASE SCOPED CREDENTIAL prasynapsews0820_wsi WITH IDENTITY = 'Managed Identity'\nGO\n \n-- Create external data source secured using credential\nCREATE EXTERNAL DATA SOURCE prasynapsews0820_ds WITH (\n    LOCATION = 'https://prasynapsesa0820.dfs.core.windows.net',\n    CREDENTIAL = prasynapsews0820_wsi\n);\nGO\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'prasynapsefs0820/CustomerCases/QID10110_20200504_180316_0.parq.snappy', --'https://prasynapsesa.dfs.core.windows.net/misc/employee/subheesh.parquet'\n        FORMAT='PARQUET'\n        ,DATA_SOURCE = 'prasynapsews0820_ds'\n    ) AS [r];\n\nSELECT TOP 100 *\nFROM OPENROWSET(\n        BULK 'prasynapsefs0820/CustomerCases/QID10110_20200504_180316_0.parq.snappy', --https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv\n        FORMAT = 'CSV',\n        DATA_SOURCE = 'prasynapsews0820_ds'\n    )\nWITH (\n[PatientId] INT ,\n[DateOfBirth] DATE,\n[GenderType] VARCHAR(10),\n[CreationDateUTC] DATE,\n[LastUpdatedDateUTC] DATE\n) AS [r]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "ondemanddb"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

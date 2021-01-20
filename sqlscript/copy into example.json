@@ -1,0 +1,16 @@
+{
+	"name": "copy into example",
+	"properties": {
+		"content": {
+			"query": "COPY INTO dbo.samplesourcebulk (PatientId 1, DateOfBirth 2, GenderType 3, CreationDateUTC 4, LastUpdatedDateUTC 5)\nFROM 'https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv'\nWITH\n(\n\tFILE_TYPE = 'CSV',\n    --,CREDENTIAL = (IDENTITY = 'Managed Identity')\nCREDENTIAL=(IDENTITY= 'Storage Account Key', SECRET='Hesp+jraWvxxoThhs5FiZegec+OTx+Guuw+g/QOZBLix+hBBPJqCNnuSbx1fpvj1BevoT08G/RnHpmEGvk6ISA=='),\n\tMAXERRORS = 0,\n\tFIELDTERMINATOR = ',',\n\tIDENTITY_INSERT = 'OFF'\n)\nGO\n\n\nSELECT * FROM dbo.samplesourcebulk \n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

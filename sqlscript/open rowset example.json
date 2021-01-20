@@ -1,0 +1,16 @@
+{
+	"name": "open rowset example",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.objects WHERE NAME = 'samplesourcebulk' AND TYPE = 'U')\nCREATE TABLE dbo.samplesourcebulk\n\t(\nPatientId INT,\nDateOfBirth DATETIME,\nGenderType VARCHAR(10),\nCreationDateUTC DATETIME,\nLastUpdatedDateUTC DATETIME\n\t)\nWITH\n\t(\n\tDISTRIBUTION = ROUND_ROBIN,\n\t CLUSTERED COLUMNSTORE INDEX\n\t -- HEAP\n\t)\nGO\n\n\n\nSELECT *\nFROM OPENROWSET(\n        BULK 'https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv', --https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv\n        FORMAT = 'CSV',\n        --DATA_SOURCE = 'prasynapsesa',\n        FIRSTROW = 2,\n        ROWTERMINATOR = '\\n'\n    )\nWITH (\n[PatientId] INT ,\n[DateOfBirth] DATE,\n[GenderType] VARCHAR(10),\n[CreationDateUTC] DATE,\n[LastUpdatedDateUTC] DATE\n) AS [r]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "master",
+				"type": "SqlOnDemand"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

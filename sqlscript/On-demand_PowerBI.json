@@ -1,0 +1,16 @@
+{
+	"name": "On-demand_PowerBI",
+	"properties": {
+		"content": {
+			"query": "-- type your sql script here, we now have intellisenseCREATE FUNCTION PraFunction007 (@dbid int)  \nRETURNS TABLE\nAS\nRETURN\n(\nSELECT\n    *\nFROM\n   sys.databases where Database_id > @dbid \n);\n\n\nselect * from PraFunction007(0)\n\nDECLARE @year INT = 2020;\nDECLARE @month INT = 8;\nDECLARE @SQL NVARCHAR(MAX);\nSET @SQL= 'SELECT * FROM OPENROWSET(BULK '+ '''' \n    + 'https://prasynapsesa.dfs.core.windows.net/customercases/RaviKumar/dt_year=' + CAST(@year AS VARCHAR(10))+ '/dt_month='+CAST(@month AS VARCHAR(10)) + '/*.snappy' +''''+', \n    FORMAT='+''''+'PARQUET'+''''+ ') AS [result]';\n\nPRINT @SQL;\n\nEXEC(@SQL);\n\n\n------------------------------------------------------------------------------------------------------------------------------------------------------\n--NOT WORKING SCENARIOS\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://prasynapsesa.dfs.core.windows.net/customercases/RaviKumar/dt_year=2020/dt_month=8/*.snappy',\n        FORMAT='PARQUET'\n    ) AS [result]\n\n\n\nDECLARE @path VARCHAR(100);\nSET @path = 'misc/employee/subheesh.parquet;'\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK @path, --'https://prasynapsesa.dfs.core.windows.net/misc/employee/subheesh.parquet'\n        FORMAT='PARQUET'\n        ,DATA_SOURCE = 'prasynapsewsdatasource'\n    ) AS [r];\n\n\nCREATE FUNCTION Trip ()  \nRETURNS TABLE  \nAS  \nRETURN   \n(  \n    SELECT *\nFROM\n    OPENROWSET(\n        BULK 'https://spatelreportingstorage.dfs.core.windows.net/spatalreportingblobcontainer/SPATELTripTravelTime/dt_year=2020/dt_month=7/dt=2020-07-02/*',\n        FORMAT='PARQUET'\n    ) AS [result]\n);\n\nSELECT * FROM TRIP()\n\nCREATE FUNCTION PraFunction ()  \nRETURNS TABLE\nAS\nRETURN\n(\nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK 'customercases/RaviKumar/dt_year=2020/dt_month=8/*.snappy', --'https://prasynapsesa.dfs.core.windows.net/misc/employee/subheesh.parquet'\n        FORMAT='PARQUET',\n        DATA_SOURCE = 'prasynapsewsdatasource'\n    ) AS [r]\n);\n  \n\n  SELECT * FROM PraFunction();\n\nCREATE FUNCTION PraFunction2 (@path nvarchar(1000))  \nRETURNS TABLE\nAS\nRETURN\n(\nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK @path,\n        DATA_SOURCE = 'prasynapsewsdatasource'\n    ) AS [r]\n);\n\n\n\n  SELECT * FROM PraFunction2('customercases/RaviKumar/dt_year=2020/dt_month=8/*.snappy');",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "master",
+				"type": "SqlOnDemand"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"name": "SampleDataflow_Polybase",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DataflowParquet",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DataflowDwhtable",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tAccountDescription as string,\n\t\tValueType as string,\n\t\tAccountKey as integer,\n\t\tParentAccountKey as integer,\n\t\tCustomMembers as string,\n\t\tOperator as string,\n\t\tAccountType as string,\n\t\tCustomMemberOptions as string,\n\t\tParentAccountCodeAlternateKey as integer,\n\t\tAccountCodeAlternateKey as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'parquet') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+		}
+	}
+}

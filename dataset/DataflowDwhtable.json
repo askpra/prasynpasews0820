@@ -1,0 +1,20 @@
+{
+	"name": "DataflowDwhtable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "prasynpasews0820-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "prasynapsep0820"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dataflowtest"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

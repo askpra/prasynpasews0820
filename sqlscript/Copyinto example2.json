@@ -1,0 +1,16 @@
+{
+	"name": "Copyinto example2",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.objects WHERE NAME = 'stupidtable' AND TYPE = 'U')\nCREATE TABLE dbo.stupidtable\n\t(\n\t Column1 nvarchar(30),\n\t Column2 nvarchar(30),\n\t Column3 nvarchar(30),\n\t Column4 nvarchar(30),\n\t Column5 nvarchar(30)\n\t)\nWITH\n\t(\n\tDISTRIBUTION = ROUND_ROBIN,\n\t CLUSTERED COLUMNSTORE INDEX\n\t -- HEAP\n\t)\nGO\n\n--Uncomment the 4 lines below to create a stored procedure for data pipeline orchestration​                 \n--CREATE PROC bulk_load_stupidtable\n--AS\n--BEGIN\nCOPY INTO dbo.stupidtable\n(Column1 1, Column2 2, Column3 3, Column4 4, Column5 5)\nFROM 'https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv'\nWITH\n(\n\tFILE_TYPE = 'CSV',\n\tCREDENTIAL=(IDENTITY= 'Shared Access Signature', SECRET='?sv=2019-10-10&ss=bfqt&srt=c&sp=rwdlacupx&se=2020-07-01T10:32:09Z&st=2020-07-01T02:32:09Z&spr=https&sig=z3af4YX79EsUHGwb0nSRVWC1qOYIHfMMMb4AmVYMCoM%3D'),\n\t--CREDENTIAL=(IDENTITY= 'Storage Account Key', SECRET='Hesp+jraWvxxoThhs5FiZegec+OTx+Guuw+g/QOZBLix+hBBPJqCNnuSbx1fpvj1BevoT08G/RnHpmEGvk6ISA=='),\n\tMAXERRORS = 0\n\t,FIELDQUOTE = '\"'\n\t,FIELDTERMINATOR = ','\n\t--,ERRORFILE = 'https://prasynapsesa.dfs.core.windows.net/misc/'\n\t,IDENTITY_INSERT = 'OFF'\n)\n--END\nGO\n\nSELECT TOP 100 * FROM stupidtable\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "master",
+				"type": "SqlOnDemand"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

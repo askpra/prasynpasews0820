@@ -1,0 +1,63 @@
+{
+	"name": "DataflowParquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "WorkspaceStorageAccountMSI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "QID10110_20200504_180316_0.parq.snappy",
+				"folderPath": "CustomerCases",
+				"fileSystem": "prasynapsefs0820"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "AccountDescription",
+				"type": "UTF8"
+			},
+			{
+				"name": "ValueType",
+				"type": "UTF8"
+			},
+			{
+				"name": "AccountKey",
+				"type": "INT32"
+			},
+			{
+				"name": "ParentAccountKey",
+				"type": "INT32"
+			},
+			{
+				"name": "CustomMembers",
+				"type": "UTF8"
+			},
+			{
+				"name": "Operator",
+				"type": "UTF8"
+			},
+			{
+				"name": "AccountType",
+				"type": "UTF8"
+			},
+			{
+				"name": "CustomMemberOptions",
+				"type": "UTF8"
+			},
+			{
+				"name": "ParentAccountCodeAlternateKey",
+				"type": "INT32"
+			},
+			{
+				"name": "AccountCodeAlternateKey",
+				"type": "INT32"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

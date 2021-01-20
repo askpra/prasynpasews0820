@@ -1,0 +1,16 @@
+{
+	"name": "databricksnotes",
+	"properties": {
+		"content": {
+			"query": "CREATE USER [praadadfmsi] FROM EXTERNAL PROVIDER;\n\nGRANT CONTROL ON DATABASE::prasynapsepool TO [praadadfmsi];\nGO\n\n--ALTER ROLE db_owner ADD MEMBER [praadadfmsi];\n\nCREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Rr44Rr44';\nGO\n\nApplication (client) ID : 457d2363-fe18-4a62-aa24-0f4abe95395d\nDirectory (tenant) ID : 72f988bf-86f1-41af-91ab-2d7cd011db47\nObject ID : cf629fdd-d906-4b37-bbbe-5ece39d6c90b\n\nprasynapsemsi\n\nsecret : HEPF]HBeJXG/.yiecam-iCvY5Zhz33N6\n\n\nCREATE USER [prasynapsemsi] FROM EXTERNAL PROVIDER;\n\nGRANT CONTROL ON DATABASE::prasynapsepool TO [prasynapsemsi];\nGO\n\n\nSet-AzSqlServer -ResourceGroupName \"prasynapserg\" -ServerName \"prasynapsews.sql.azuresynapse.net\" -AssignIdentity \"prasynapsemsi\"\n\n    PS /home/prathibha> Set-AzSqlServer -ResourceGroupName \"prasynapserg\" -ServerName \"prasynapsetempsvr\" -AssignIdentity\n\nResourceGroupName        : prasynapserg\nServerName               : prasynapsetempsvr\nLocation                 : eastus\nSqlAdministratorLogin    : pratest\nSqlAdministratorPassword :\nServerVersion            : 12.0\nTags                     : {}\nIdentity                 : Microsoft.Azure.Management.Sql.Models.ResourceIdentity\nFullyQualifiedDomainName : prasynapsetempsvr.database.windows.net\nResourceId               : /subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourceGroups/prasynapserg/providers/Microsoft.Sql/servers/prasynapsetempsvr\nMinimalTlsVersion        :\nPublicNetworkAccess      : Enabled\n\ndatabricks bash commands\n\ndatabricks secrets create-scope --scope prasynapsekv --initial-manage-principal users //i created a scope called Keyvault\n\ndatabricks secrets put --scope Keyvault --key MSIUsername\ndatabricks secrets put --scope prasynapsekv --key MSIPassword\n\nprasynapsekv \n\n/subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourcegroups/prasynapserg/providers/Microsoft.KeyVault/vaults/prasynapsekv\n\ndatabricks secrets create-scope --scope jdbc --initial-manage-principal users\ndatabricks secrets put --scope jdbc --key username\ndatabricks secrets put --scope jdbc --key password",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "master",
+				"type": "SqlOnDemand"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

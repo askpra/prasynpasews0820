@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-sql--prasynpasews0820",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourceGroups/prasynapsergnew/providers/Microsoft.Synapse/workspaces/prasynpasews0820",
+		"groupId": "sql",
+		"fqdns": [
+			"prasynpasews0820.sql.azuresynapse.net"
+		]
+	}
+}

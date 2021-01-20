@@ -1,0 +1,38 @@
+{
+	"name": "DestinationDataset_s0k",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Column1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column5",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stupidtable"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

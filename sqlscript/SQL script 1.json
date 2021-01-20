@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE employee\n(ID INT, Name VARCHAR(25), Dept VARCHAR(50));\n\nINSERT INTO dbo.employee VALUES (1, 'Pra', 'Support')\nINSERT INTO dbo.employee VALUES (2, 'JK', 'Development')",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "prasynapsep0820",
+				"type": "SqlPool"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
