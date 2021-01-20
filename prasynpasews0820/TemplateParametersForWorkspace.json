@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "prasynpasews0820"
+		},
+		"AzureDataLakeStorage23_accountKey": {
+			"value": ""
+		},
+		"AzureFileStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
+		"Nondefaultdataflowsourcedataset_accountKey": {
+			"value": ""
+		},
+		"WorkspaceStorageAccountMSI_accountKey": {
+			"value": ""
+		},
+		"linkedService1_connectionString": {
+			"value": ""
+		},
+		"prasynpasews0820-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage23_properties_typeProperties_url": {
+			"value": "https://prasynapsesa0820.dfs.core.windows.net"
+		},
+		"Nondefaultdataflowsourcedataset_properties_typeProperties_url": {
+			"value": "https://prasynapsesa0820.dfs.core.windows.net"
+		},
+		"WorkspaceStorageAccountMSI_properties_typeProperties_url": {
+			"value": "https://prasynapsesa0820.dfs.core.windows.net"
+		},
+		"linkedService2_properties_typeProperties_url": {
+			"value": "https://prasynapsesa0820.dfs.core.windows.net"
+		},
+		"prasynapsesa_properties_typeProperties_url": {
+			"value": "https://prasynapsesa.dfs.core.windows.net"
+		},
+		"prasynpasews0820-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://prasynapsesa0820.dfs.core.windows.net"
+		}
+	}
+}

@@ -1,0 +1,1127 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"type": "string",
+			"metadata": "Workspace name",
+			"defaultValue": "prasynpasews0820"
+		},
+		"AzureDataLakeStorage23_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage23'"
+		},
+		"AzureFileStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureFileStorage1'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'"
+		},
+		"Nondefaultdataflowsourcedataset_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Nondefaultdataflowsourcedataset'"
+		},
+		"WorkspaceStorageAccountMSI_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'WorkspaceStorageAccountMSI'"
+		},
+		"linkedService1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+		},
+		"prasynpasews0820-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'prasynpasews0820-WorkspaceDefaultSqlServer'"
+		},
+		"AzureDataLakeStorage23_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://prasynapsesa0820.dfs.core.windows.net"
+		},
+		"Nondefaultdataflowsourcedataset_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://prasynapsesa0820.dfs.core.windows.net"
+		},
+		"WorkspaceStorageAccountMSI_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://prasynapsesa0820.dfs.core.windows.net"
+		},
+		"linkedService2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://prasynapsesa0820.dfs.core.windows.net"
+		},
+		"prasynapsesa_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://prasynapsesa.dfs.core.windows.net"
+		},
+		"prasynpasews0820-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://prasynapsesa0820.dfs.core.windows.net"
+		}
+	},
+	"variables": {
+		"workspaceId": "[concat('Microsoft.Synapse/workspaces/', parameters('workspaceName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('workspaceName'), '/prasynapsep0820')]",
+			"type": "Microsoft.Synapse/workspaces/sqlPools",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/CopyPipeline_s0k')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_s0k",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "misc/employee/Samplesource.csv"
+							},
+							{
+								"name": "Destination",
+								"value": "dbo.stupidtable"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings",
+									"skipLineCount": 0
+								}
+							},
+							"sink": {
+								"type": "SqlDWSink"
+							},
+							"enableStaging": false,
+							"validateDataConsistency": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "PatientId",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Column1",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DateOfBirth",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Column2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "GenderType",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Column3",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CreationDateUTC",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Column4",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LastUpdatedDateUTC",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Column5",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_s0k",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_s0k",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-09-23T22:33:54Z"
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/SourceDataset_s0k')]",
+				"[concat(variables('workspaceId'), '/datasets/DestinationDataset_s0k')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Pipeline 1')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Dataflow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "SampleDataflow_Polybase",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {
+								"linkedService": {
+									"referenceName": "linkedService1",
+									"type": "LinkedServiceReference"
+								},
+								"folderPath": "sqldbauditlogs/prasynapsetempsvr/prasynapsetemppool/SqlDbAuditing_ServerAudit/2020-11-03"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-11-03T21:08:00Z"
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/dataflows/SampleDataflow_Polybase')]",
+				"[concat(variables('workspaceId'), '/linkedServices/linkedService1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Pipeline 2')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ParquetSource",
+								"storeSettings": {
+									"type": "AzureFileStorageReadSettings",
+									"recursive": true,
+									"wildcardFolderPath": "*",
+									"wildcardFileName": "*.snappy",
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"copyBehavior": "PreserveHierarchy"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Parquet1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Parquet2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-12-18T02:09:59Z"
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/Parquet1')]",
+				"[concat(variables('workspaceId'), '/datasets/Parquet2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/DataflowDwhtable')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "prasynpasews0820-WorkspaceDefaultSqlServer",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"DBName": "prasynapsep0820"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "dataflowtest"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/prasynpasews0820-WorkspaceDefaultSqlServer')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/DataflowParquet')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "WorkspaceStorageAccountMSI",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "QID10110_20200504_180316_0.parq.snappy",
+						"folderPath": "CustomerCases",
+						"fileSystem": "prasynapsefs0820"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "AccountDescription",
+						"type": "UTF8"
+					},
+					{
+						"name": "ValueType",
+						"type": "UTF8"
+					},
+					{
+						"name": "AccountKey",
+						"type": "INT32"
+					},
+					{
+						"name": "ParentAccountKey",
+						"type": "INT32"
+					},
+					{
+						"name": "CustomMembers",
+						"type": "UTF8"
+					},
+					{
+						"name": "Operator",
+						"type": "UTF8"
+					},
+					{
+						"name": "AccountType",
+						"type": "UTF8"
+					},
+					{
+						"name": "CustomMemberOptions",
+						"type": "UTF8"
+					},
+					{
+						"name": "ParentAccountCodeAlternateKey",
+						"type": "INT32"
+					},
+					{
+						"name": "AccountCodeAlternateKey",
+						"type": "INT32"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/WorkspaceStorageAccountMSI')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/DestinationDataset_s0k')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "Column1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Column2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Column3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Column4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Column5",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stupidtable"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/AzureSynapseAnalytics1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Parquet1')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureFileStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureFileStorageLocation",
+						"folderPath": "testfilesharedir"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/AzureFileStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Parquet2')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "WorkspaceStorageAccountMSI",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "CustomerCases",
+						"fileSystem": "prasynapsefs0820"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/WorkspaceStorageAccountMSI')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SourceDataset_s0k')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "prasynapsesa",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Samplesource.csv",
+						"folderPath": "employee",
+						"fileSystem": "misc"
+					},
+					"columnDelimiter": ",",
+					"rowDelimiter": "\n",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "PatientId",
+						"type": "String"
+					},
+					{
+						"name": "DateOfBirth",
+						"type": "String"
+					},
+					{
+						"name": "GenderType",
+						"type": "String"
+					},
+					{
+						"name": "CreationDateUTC",
+						"type": "String"
+					},
+					{
+						"name": "LastUpdatedDateUTC",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/prasynapsesa')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AzureDataLakeStorage23')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage23_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage23_accountKey')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AzureFileStorage1')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureFileStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureFileStorage1_connectionString')]",
+					"fileShare": "prafilesharefs"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AzureSynapseAnalytics1')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSynapseAnalytics1_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Nondefaultdataflowsourcedataset')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('Nondefaultdataflowsourcedataset_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('Nondefaultdataflowsourcedataset_accountKey')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/WorkspaceStorageAccountMSI')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('WorkspaceStorageAccountMSI_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('WorkspaceStorageAccountMSI_accountKey')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/linkedService1')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('linkedService1_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/linkedService2')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('linkedService2_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/prasynapsesa')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('prasynapsesa_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/prasynpasews0820-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('prasynpasews0820-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/prasynpasews0820-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('prasynpasews0820-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AutoResolveIntegrationRuntime')]",
+			"type": "Microsoft.Synapse/workspaces/integrationRuntimes",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "AutoResolve",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLive": 0
+						}
+					}
+				},
+				"managedVirtualNetwork": {
+					"type": "ManagedVirtualNetworkReference",
+					"referenceName": "default"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/managedVirtualNetworks/default')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/IntegrationRuntime1')]",
+			"type": "Microsoft.Synapse/workspaces/integrationRuntimes",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "South Central US",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLive": 0
+						}
+					}
+				},
+				"managedVirtualNetwork": {
+					"type": "ManagedVirtualNetworkReference",
+					"referenceName": "default"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/managedVirtualNetworks/default')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/IntegrationRuntime2')]",
+			"type": "Microsoft.Synapse/workspaces/integrationRuntimes",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "AutoResolve",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLive": 0
+						}
+					}
+				},
+				"managedVirtualNetwork": {
+					"type": "ManagedVirtualNetworkReference",
+					"referenceName": "default"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/managedVirtualNetworks/default')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SampleDataflow_Polybase')]",
+			"type": "Microsoft.Synapse/workspaces/dataflows",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DataflowParquet",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DataflowDwhtable",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\tAccountDescription as string,\n\t\tValueType as string,\n\t\tAccountKey as integer,\n\t\tParentAccountKey as integer,\n\t\tCustomMembers as string,\n\t\tOperator as string,\n\t\tAccountType as string,\n\t\tCustomMemberOptions as string,\n\t\tParentAccountCodeAlternateKey as integer,\n\t\tAccountCodeAlternateKey as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'parquet') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/DataflowParquet')]",
+				"[concat(variables('workspaceId'), '/datasets/DataflowDwhtable')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/WorkspaceSystemIdentity')]",
+			"type": "Microsoft.Synapse/workspaces/credentials",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "ManagedIdentity",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Copyinto example2')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "IF NOT EXISTS (SELECT * FROM sys.objects WHERE NAME = 'stupidtable' AND TYPE = 'U')\nCREATE TABLE dbo.stupidtable\n\t(\n\t Column1 nvarchar(30),\n\t Column2 nvarchar(30),\n\t Column3 nvarchar(30),\n\t Column4 nvarchar(30),\n\t Column5 nvarchar(30)\n\t)\nWITH\n\t(\n\tDISTRIBUTION = ROUND_ROBIN,\n\t CLUSTERED COLUMNSTORE INDEX\n\t -- HEAP\n\t)\nGO\n\n--Uncomment the 4 lines below to create a stored procedure for data pipeline orchestration​                 \n--CREATE PROC bulk_load_stupidtable\n--AS\n--BEGIN\nCOPY INTO dbo.stupidtable\n(Column1 1, Column2 2, Column3 3, Column4 4, Column5 5)\nFROM 'https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv'\nWITH\n(\n\tFILE_TYPE = 'CSV',\n\tCREDENTIAL=(IDENTITY= 'Shared Access Signature', SECRET='?sv=2019-10-10&ss=bfqt&srt=c&sp=rwdlacupx&se=2020-07-01T10:32:09Z&st=2020-07-01T02:32:09Z&spr=https&sig=z3af4YX79EsUHGwb0nSRVWC1qOYIHfMMMb4AmVYMCoM%3D'),\n\t--CREDENTIAL=(IDENTITY= 'Storage Account Key', SECRET='Hesp+jraWvxxoThhs5FiZegec+OTx+Guuw+g/QOZBLix+hBBPJqCNnuSbx1fpvj1BevoT08G/RnHpmEGvk6ISA=='),\n\tMAXERRORS = 0\n\t,FIELDQUOTE = '\"'\n\t,FIELDTERMINATOR = ','\n\t--,ERRORFILE = 'https://prasynapsesa.dfs.core.windows.net/misc/'\n\t,IDENTITY_INSERT = 'OFF'\n)\n--END\nGO\n\nSELECT TOP 100 * FROM stupidtable\nGO",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"name": "master",
+						"type": "SqlOnDemand"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/On-demand_PowerBI')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "-- type your sql script here, we now have intellisenseCREATE FUNCTION PraFunction007 (@dbid int)  \nRETURNS TABLE\nAS\nRETURN\n(\nSELECT\n    *\nFROM\n   sys.databases where Database_id > @dbid \n);\n\n\nselect * from PraFunction007(0)\n\nDECLARE @year INT = 2020;\nDECLARE @month INT = 8;\nDECLARE @SQL NVARCHAR(MAX);\nSET @SQL= 'SELECT * FROM OPENROWSET(BULK '+ '''' \n    + 'https://prasynapsesa.dfs.core.windows.net/customercases/RaviKumar/dt_year=' + CAST(@year AS VARCHAR(10))+ '/dt_month='+CAST(@month AS VARCHAR(10)) + '/*.snappy' +''''+', \n    FORMAT='+''''+'PARQUET'+''''+ ') AS [result]';\n\nPRINT @SQL;\n\nEXEC(@SQL);\n\n\n------------------------------------------------------------------------------------------------------------------------------------------------------\n--NOT WORKING SCENARIOS\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://prasynapsesa.dfs.core.windows.net/customercases/RaviKumar/dt_year=2020/dt_month=8/*.snappy',\n        FORMAT='PARQUET'\n    ) AS [result]\n\n\n\nDECLARE @path VARCHAR(100);\nSET @path = 'misc/employee/subheesh.parquet;'\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK @path, --'https://prasynapsesa.dfs.core.windows.net/misc/employee/subheesh.parquet'\n        FORMAT='PARQUET'\n        ,DATA_SOURCE = 'prasynapsewsdatasource'\n    ) AS [r];\n\n\nCREATE FUNCTION Trip ()  \nRETURNS TABLE  \nAS  \nRETURN   \n(  \n    SELECT *\nFROM\n    OPENROWSET(\n        BULK 'https://spatelreportingstorage.dfs.core.windows.net/spatalreportingblobcontainer/SPATELTripTravelTime/dt_year=2020/dt_month=7/dt=2020-07-02/*',\n        FORMAT='PARQUET'\n    ) AS [result]\n);\n\nSELECT * FROM TRIP()\n\nCREATE FUNCTION PraFunction ()  \nRETURNS TABLE\nAS\nRETURN\n(\nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK 'customercases/RaviKumar/dt_year=2020/dt_month=8/*.snappy', --'https://prasynapsesa.dfs.core.windows.net/misc/employee/subheesh.parquet'\n        FORMAT='PARQUET',\n        DATA_SOURCE = 'prasynapsewsdatasource'\n    ) AS [r]\n);\n  \n\n  SELECT * FROM PraFunction();\n\nCREATE FUNCTION PraFunction2 (@path nvarchar(1000))  \nRETURNS TABLE\nAS\nRETURN\n(\nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK @path,\n        DATA_SOURCE = 'prasynapsewsdatasource'\n    ) AS [r]\n);\n\n\n\n  SELECT * FROM PraFunction2('customercases/RaviKumar/dt_year=2020/dt_month=8/*.snappy');",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"name": "master",
+						"type": "SqlOnDemand"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Ondemand working scenario')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": " CREATE DATABASE ondemanddb;\n CREATE MASTER KEY;\n \n \n-- Create credential that will allow user to impersonate using Managed Identity assigned to workspace\nCREATE DATABASE SCOPED CREDENTIAL prasynapsews0820_wsi WITH IDENTITY = 'Managed Identity'\nGO\n\n \n-- Create external data source secured using credential\nCREATE EXTERNAL DATA SOURCE prasynapsews0820_ds WITH (\n    LOCATION = 'https://prasynapsesa0820.dfs.core.windows.net',\n    CREDENTIAL = prasynapsews0820_wsi\n);\nGO\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'prasynapsefs0820/CustomerCases/QID10110_20200504_180316_0.parq.snappy', --'https://prasynapsesa.dfs.core.windows.net/misc/employee/subheesh.parquet'\n        FORMAT='PARQUET'\n        ,DATA_SOURCE = 'prasynapsews0820_ds'\n    ) AS [r];\n\nSELECT TOP 100 *\nFROM OPENROWSET(\n        BULK 'prasynapsefs0820/CustomerCases/QID10110_20200504_180316_0.parq.snappy', --https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv\n        FORMAT = 'CSV',\n        DATA_SOURCE = 'prasynapsews0820_ds'\n    )\nWITH (\n[PatientId] INT ,\n[DateOfBirth] DATE,\n[GenderType] VARCHAR(10),\n[CreationDateUTC] DATE,\n[LastUpdatedDateUTC] DATE\n) AS [r]",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"poolName": "Built-in",
+						"databaseName": "ondemanddb"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "CREATE TABLE employee\n(ID INT, Name VARCHAR(25), Dept VARCHAR(50));\n\nINSERT INTO dbo.employee VALUES (1, 'Pra', 'Support')\nINSERT INTO dbo.employee VALUES (2, 'JK', 'Development')",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"name": "prasynapsep0820",
+						"type": "SqlPool"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/copy into example')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "COPY INTO dbo.samplesourcebulk (PatientId 1, DateOfBirth 2, GenderType 3, CreationDateUTC 4, LastUpdatedDateUTC 5)\nFROM 'https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv'\nWITH\n(\n\tFILE_TYPE = 'CSV',\n    --,CREDENTIAL = (IDENTITY = 'Managed Identity')\nCREDENTIAL=(IDENTITY= 'Storage Account Key', SECRET='Hesp+jraWvxxoThhs5FiZegec+OTx+Guuw+g/QOZBLix+hBBPJqCNnuSbx1fpvj1BevoT08G/RnHpmEGvk6ISA=='),\n\tMAXERRORS = 0,\n\tFIELDTERMINATOR = ',',\n\tIDENTITY_INSERT = 'OFF'\n)\nGO\n\n\nSELECT * FROM dbo.samplesourcebulk \n\n\n\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"poolName": "Built-in",
+						"databaseName": "master"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/databricksnotes')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "CREATE USER [praadadfmsi] FROM EXTERNAL PROVIDER;\n\nGRANT CONTROL ON DATABASE::prasynapsepool TO [praadadfmsi];\nGO\n\n--ALTER ROLE db_owner ADD MEMBER [praadadfmsi];\n\nCREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Rr44Rr44';\nGO\n\nApplication (client) ID : 457d2363-fe18-4a62-aa24-0f4abe95395d\nDirectory (tenant) ID : 72f988bf-86f1-41af-91ab-2d7cd011db47\nObject ID : cf629fdd-d906-4b37-bbbe-5ece39d6c90b\n\nprasynapsemsi\n\nsecret : HEPF]HBeJXG/.yiecam-iCvY5Zhz33N6\n\n\nCREATE USER [prasynapsemsi] FROM EXTERNAL PROVIDER;\n\nGRANT CONTROL ON DATABASE::prasynapsepool TO [prasynapsemsi];\nGO\n\n\nSet-AzSqlServer -ResourceGroupName \"prasynapserg\" -ServerName \"prasynapsews.sql.azuresynapse.net\" -AssignIdentity \"prasynapsemsi\"\n\n    PS /home/prathibha> Set-AzSqlServer -ResourceGroupName \"prasynapserg\" -ServerName \"prasynapsetempsvr\" -AssignIdentity\n\nResourceGroupName        : prasynapserg\nServerName               : prasynapsetempsvr\nLocation                 : eastus\nSqlAdministratorLogin    : pratest\nSqlAdministratorPassword :\nServerVersion            : 12.0\nTags                     : {}\nIdentity                 : Microsoft.Azure.Management.Sql.Models.ResourceIdentity\nFullyQualifiedDomainName : prasynapsetempsvr.database.windows.net\nResourceId               : /subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourceGroups/prasynapserg/providers/Microsoft.Sql/servers/prasynapsetempsvr\nMinimalTlsVersion        :\nPublicNetworkAccess      : Enabled\n\ndatabricks bash commands\n\ndatabricks secrets create-scope --scope prasynapsekv --initial-manage-principal users //i created a scope called Keyvault\n\ndatabricks secrets put --scope Keyvault --key MSIUsername\ndatabricks secrets put --scope prasynapsekv --key MSIPassword\n\nprasynapsekv \n\n/subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourcegroups/prasynapserg/providers/Microsoft.KeyVault/vaults/prasynapsekv\n\ndatabricks secrets create-scope --scope jdbc --initial-manage-principal users\ndatabricks secrets put --scope jdbc --key username\ndatabricks secrets put --scope jdbc --key password",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"name": "master",
+						"type": "SqlOnDemand"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/function examples')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "CREATE FUNCTION PraFunction007 (@dbid int)  \nRETURNS TABLE\nAS\nRETURN\n(\nSELECT\n    *\nFROM\n   sys.databases where Database_id > @dbid \n);\n\n\nselect * from PraFunction007(0)\n\nDECLARE @year INT = 2020;\nDECLARE @month INT = 8;\nDECLARE @SQL NVARCHAR(MAX);\nSET @SQL= 'SELECT * FROM OPENROWSET(BULK '+ '''' \n    + 'https://prasynapsesa.dfs.core.windows.net/customercases/RaviKumar/dt_year=' + CAST(@year AS VARCHAR(10))+ '/dt_month='+CAST(@month AS VARCHAR(10)) + '/*.snappy' +''''+', \n    FORMAT='+''''+'PARQUET'+''''+ ') AS [result]';\n\nPRINT @SQL;\n\nEXEC(@SQL);\n\n\n------------------------------------------------------------------------------------------------------------------------------------------------------\n--NOT WORKING SCENARIOS\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://prasynapsesa.dfs.core.windows.net/customercases/RaviKumar/dt_year=2020/dt_month=8/*.snappy',\n        FORMAT='PARQUET'\n    ) AS [result]\n\n\n\nDECLARE @path VARCHAR(100);\nSET @path = 'misc/employee/subheesh.parquet;'\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK @path, --'https://prasynapsesa.dfs.core.windows.net/misc/employee/subheesh.parquet'\n        FORMAT='PARQUET'\n        ,DATA_SOURCE = 'prasynapsewsdatasource'\n    ) AS [r];\n\n\nCREATE FUNCTION Trip ()  \nRETURNS TABLE  \nAS  \nRETURN   \n(  \n    SELECT *\nFROM\n    OPENROWSET(\n        BULK 'https://spatelreportingstorage.dfs.core.windows.net/spatalreportingblobcontainer/SPATELTripTravelTime/dt_year=2020/dt_month=7/dt=2020-07-02/*',\n        FORMAT='PARQUET'\n    ) AS [result]\n);\n\nSELECT * FROM TRIP()\n\nCREATE FUNCTION PraFunction ()  \nRETURNS TABLE\nAS\nRETURN\n(\nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK 'customercases/RaviKumar/dt_year=2020/dt_month=8/*.snappy', --'https://prasynapsesa.dfs.core.windows.net/misc/employee/subheesh.parquet'\n        FORMAT='PARQUET',\n        DATA_SOURCE = 'prasynapsewsdatasource'\n    ) AS [r]\n);\n  \n\n  SELECT * FROM PraFunction();\n\nCREATE FUNCTION PraFunction2 (@path nvarchar(1000))  \nRETURNS TABLE\nAS\nRETURN\n(\nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK @path,\n        DATA_SOURCE = 'prasynapsewsdatasource'\n    ) AS [r]\n);\n\n\n\n  SELECT * FROM PraFunction2('customercases/RaviKumar/dt_year=2020/dt_month=8/*.snappy');",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"name": "master",
+						"type": "SqlOnDemand"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/open rowset example')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "IF NOT EXISTS (SELECT * FROM sys.objects WHERE NAME = 'samplesourcebulk' AND TYPE = 'U')\nCREATE TABLE dbo.samplesourcebulk\n\t(\nPatientId INT,\nDateOfBirth DATETIME,\nGenderType VARCHAR(10),\nCreationDateUTC DATETIME,\nLastUpdatedDateUTC DATETIME\n\t)\nWITH\n\t(\n\tDISTRIBUTION = ROUND_ROBIN,\n\t CLUSTERED COLUMNSTORE INDEX\n\t -- HEAP\n\t)\nGO\n\n\n\nSELECT *\nFROM OPENROWSET(\n        BULK 'https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv', --https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv\n        FORMAT = 'CSV',\n        --DATA_SOURCE = 'prasynapsesa',\n        FIRSTROW = 2,\n        ROWTERMINATOR = '\\n'\n    )\nWITH (\n[PatientId] INT ,\n[DateOfBirth] DATE,\n[GenderType] VARCHAR(10),\n[CreationDateUTC] DATE,\n[LastUpdatedDateUTC] DATE\n) AS [r]\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"name": "master",
+						"type": "SqlOnDemand"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/default')]",
+			"type": "Microsoft.Synapse/workspaces/managedVirtualNetworks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/default/prasynapsesa0820_MPE')]",
+			"type": "Microsoft.Synapse/workspaces/managedVirtualNetworks/managedPrivateEndpoints",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"privateLinkResourceId": "/subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourceGroups/prasynapsergnew/providers/Microsoft.Storage/storageAccounts/prasynapsesa0820",
+				"groupId": "dfs",
+				"fqdns": [
+					"prasynapsesa0820.dfs.core.windows.net"
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/managedVirtualNetworks/default')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/default/synapse-ws-sql--prasynpasews0820')]",
+			"type": "Microsoft.Synapse/workspaces/managedVirtualNetworks/managedPrivateEndpoints",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"privateLinkResourceId": "/subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourceGroups/prasynapsergnew/providers/Microsoft.Synapse/workspaces/prasynpasews0820",
+				"groupId": "sql",
+				"fqdns": [
+					"prasynpasews0820.sql.azuresynapse.net"
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/managedVirtualNetworks/default')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/default/synapse-ws-sqlOnDemand--prasynpasews0820')]",
+			"type": "Microsoft.Synapse/workspaces/managedVirtualNetworks/managedPrivateEndpoints",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"privateLinkResourceId": "/subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourceGroups/prasynapsergnew/providers/Microsoft.Synapse/workspaces/prasynpasews0820",
+				"groupId": "sqlOnDemand",
+				"fqdns": [
+					"prasynpasews0820-ondemand.sql.azuresynapse.net"
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/managedVirtualNetworks/default')]"
+			]
+		}
+	]
+}
