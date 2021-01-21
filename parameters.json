@@ -1,0 +1,87 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "prayusynapsews"
+        },
+        "location": {
+            "value": "southcentralus"
+        },
+        "defaultDataLakeStorageAccountName": {
+            "value": "prasynapsesa0820"
+        },
+        "defaultDataLakeStorageFilesystemName": {
+            "value": "prasynapsefs0820"
+        },
+        "sqlAdministratorLogin": {
+            "value": "sqladminuser"
+        },
+        "sqlAdministratorLoginPassword": {
+            "value": "P@$$w0rd!"
+        },
+        "setWorkspaceIdentityRbacOnStorageAccount": {
+            "value": true
+        },
+        "allowAllConnections": {
+            "value": true
+        },
+        "grantWorkspaceIdentityControlForSql": {
+            "value": "Enabled"
+        },
+        "managedVirtualNetwork": {
+            "value": "default"
+        },
+        "tagValues": {
+            "value": {}
+        },
+        "storageSubscriptionID": {
+            "value": "f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba"
+        },
+        "storageResourceGroupName": {
+            "value": "prasynapsergnew"
+        },
+        "storageLocation": {
+            "value": "southcentralus"
+        },
+        "storageRoleUniqueId": {
+            "value": "ca1233fc-2b57-465b-b4f5-b10ebf1a9014"
+        },
+        "isNewStorageAccount": {
+            "value": false
+        },
+        "isNewFileSystemOnly": {
+            "value": false
+        },
+        "adlaResourceId": {
+            "value": ""
+        },
+        "storageAccessTier": {
+            "value": "Hot"
+        },
+        "storageAccountType": {
+            "value": "Standard_RAGRS"
+        },
+        "storageSupportsHttpsTrafficOnly": {
+            "value": true
+        },
+        "storageKind": {
+            "value": "StorageV2"
+        },
+        "storageIsHnsEnabled": {
+            "value": true
+        },
+        "userObjectId": {
+            "value": "1b64405f-2745-4840-9dbb-4308ad1629a6"
+        },
+        "setSbdcRbacOnStorageAccount": {
+            "value": false
+        },
+        "managedVirtualNetworkSettings": {
+            "value": {
+                "allowedAadTenantIdsForLinking": [],
+                "preventDataExfiltration": false
+            }
+        }
+    }
+}
