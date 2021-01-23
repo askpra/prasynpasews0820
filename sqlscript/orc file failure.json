@@ -1,0 +1,16 @@
+{
+	"name": "orc file failure",
+	"properties": {
+		"content": {
+			"query": "DROP TABLE service_support_analytics.support_surveys\nCREATE TABLE service_support_analytics.support_surveys (\n    response_id varchar(8000),\n    survey_id varchar(8000),\n    total_time integer,\n    response_status varchar(8000),\n    ticket_id bigint,\n    source integer,\n    ct integer,\n    created_date datetime2,\n    modified_date datetime2,\n    support_experience_rating_raw varchar(8000),\n    support_experience_rating integer,\n    support_experience_sentiment_raw varchar(8000),\n    dissatisfied_reason varchar(8000),\n    dissatisfied_reason_text_raw varchar(8000),\n    dissatisfied_reason_text_sentiment_raw varchar(8000),\n   -- satisfied_reason varchar(8000),\n    satisfied_reason_text varchar(8000),\n    satisfied_reason_text_sentiment_raw varchar(8000),\n    open_ended_response varchar(8000),\n    open_ended_response_sentiment_raw varchar(8000),\n    follow_up varchar(8000),\n    timely_help integer,\n    caring_reps integer,\n    resolution integer,\n    easy_access integer,\n    survey_source varchar(8000)\n )\n\nhttps://prasynapsesa0820.blob.core.windows.net/prasynapsefs0820/CustomerCases/konstantin/sampleorcfile.orc\n\nCOPY INTO service_support_analytics.support_surveys\nFROM 'https://prasynapsesa0820.dfs.core.windows.net/prasynapsefs0820/CustomerCases/konstantin'\nWITH (\n    FILE_FORMAT = ORC_Format, CREDENTIAL = (IDENTITY = 'Managed Identity')\n    )  \n\n    SELECT * FROM [service_support_analytics].[support_surveys2]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "prasynapsep0820",
+				"databaseName": "prasynapsep0820"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
