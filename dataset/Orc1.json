@@ -1,0 +1,129 @@
+{
+	"name": "Orc1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "prasynpasews0820-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Orc",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "sampleorcfile.orc",
+				"folderPath": "CustomerCases/konstantin",
+				"fileSystem": "prasynapsefs0820"
+			},
+			"enablePhysicalSchema": true
+		},
+		"schema": [
+			{
+				"type": "STRING",
+				"name": "response_id"
+			},
+			{
+				"type": "STRING",
+				"name": "survey_id"
+			},
+			{
+				"type": "INT",
+				"name": "total_time"
+			},
+			{
+				"type": "STRING",
+				"name": "response_status"
+			},
+			{
+				"type": "LONG",
+				"name": "ticket_id"
+			},
+			{
+				"type": "INT",
+				"name": "source"
+			},
+			{
+				"type": "INT",
+				"name": "ct"
+			},
+			{
+				"type": "TIMESTAMP",
+				"name": "created_date"
+			},
+			{
+				"type": "TIMESTAMP",
+				"name": "modified_date"
+			},
+			{
+				"type": "STRING",
+				"name": "support_experience_rating_raw"
+			},
+			{
+				"type": "INT",
+				"name": "support_experience_rating"
+			},
+			{
+				"type": "STRING",
+				"name": "support_experience_sentiment_raw"
+			},
+			{
+				"type": "STRING",
+				"name": "dissatisfied_reason"
+			},
+			{
+				"type": "STRING",
+				"name": "dissatisfied_reason_text_raw"
+			},
+			{
+				"type": "STRING",
+				"name": "dissatisfied_reason_text_sentiment_raw"
+			},
+			{
+				"items": {
+					"type": "STRING"
+				},
+				"type": "LIST",
+				"name": "satisfied_reason"
+			},
+			{
+				"type": "STRING",
+				"name": "satisfied_reason_text"
+			},
+			{
+				"type": "STRING",
+				"name": "satisfied_reason_text_sentiment_raw"
+			},
+			{
+				"type": "STRING",
+				"name": "open_ended_response"
+			},
+			{
+				"type": "STRING",
+				"name": "open_ended_response_sentiment_raw"
+			},
+			{
+				"type": "STRING",
+				"name": "follow_up"
+			},
+			{
+				"type": "INT",
+				"name": "timely_help"
+			},
+			{
+				"type": "INT",
+				"name": "caring_reps"
+			},
+			{
+				"type": "INT",
+				"name": "resolution"
+			},
+			{
+				"type": "INT",
+				"name": "easy_access"
+			},
+			{
+				"type": "STRING",
+				"name": "survey_source"
+			}
+		]
+	}
+}

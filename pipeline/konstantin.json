@@ -1,0 +1,291 @@
+{
+	"name": "konstantin",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OrcSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "response_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "response_id"
+								}
+							},
+							{
+								"source": {
+									"name": "survey_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "survey_id"
+								}
+							},
+							{
+								"source": {
+									"name": "total_time",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "total_time"
+								}
+							},
+							{
+								"source": {
+									"name": "response_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "response_status"
+								}
+							},
+							{
+								"source": {
+									"name": "ticket_id",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "ticket_id"
+								}
+							},
+							{
+								"source": {
+									"name": "source",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "source"
+								}
+							},
+							{
+								"source": {
+									"name": "ct",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ct"
+								}
+							},
+							{
+								"source": {
+									"name": "created_date",
+									"type": "DateTimeOffset"
+								},
+								"sink": {
+									"name": "created_date"
+								}
+							},
+							{
+								"source": {
+									"name": "modified_date",
+									"type": "DateTimeOffset"
+								},
+								"sink": {
+									"name": "modified_date"
+								}
+							},
+							{
+								"source": {
+									"name": "support_experience_rating_raw",
+									"type": "String"
+								},
+								"sink": {
+									"name": "support_experience_rating_raw"
+								}
+							},
+							{
+								"source": {
+									"name": "support_experience_rating",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "support_experience_rating"
+								}
+							},
+							{
+								"source": {
+									"name": "support_experience_sentiment_raw",
+									"type": "String"
+								},
+								"sink": {
+									"name": "support_experience_sentiment_raw"
+								}
+							},
+							{
+								"source": {
+									"name": "dissatisfied_reason",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dissatisfied_reason"
+								}
+							},
+							{
+								"source": {
+									"name": "dissatisfied_reason_text_raw",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dissatisfied_reason_text_raw"
+								}
+							},
+							{
+								"source": {
+									"name": "dissatisfied_reason_text_sentiment_raw",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dissatisfied_reason_text_sentiment_raw"
+								}
+							},
+							{
+								"source": {
+									"name": "satisfied_reason"
+								},
+								"sink": {
+									"name": "satisfied_reason"
+								}
+							},
+							{
+								"source": {
+									"name": "satisfied_reason_text",
+									"type": "String"
+								},
+								"sink": {
+									"name": "satisfied_reason_text"
+								}
+							},
+							{
+								"source": {
+									"name": "satisfied_reason_text_sentiment_raw",
+									"type": "String"
+								},
+								"sink": {
+									"name": "satisfied_reason_text_sentiment_raw"
+								}
+							},
+							{
+								"source": {
+									"name": "open_ended_response",
+									"type": "String"
+								},
+								"sink": {
+									"name": "open_ended_response"
+								}
+							},
+							{
+								"source": {
+									"name": "open_ended_response_sentiment_raw",
+									"type": "String"
+								},
+								"sink": {
+									"name": "open_ended_response_sentiment_raw"
+								}
+							},
+							{
+								"source": {
+									"name": "follow_up",
+									"type": "String"
+								},
+								"sink": {
+									"name": "follow_up"
+								}
+							},
+							{
+								"source": {
+									"name": "timely_help",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "timely_help"
+								}
+							},
+							{
+								"source": {
+									"name": "caring_reps",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "caring_reps"
+								}
+							},
+							{
+								"source": {
+									"name": "resolution",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "resolution"
+								}
+							},
+							{
+								"source": {
+									"name": "easy_access",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "easy_access"
+								}
+							},
+							{
+								"source": {
+									"name": "survey_source",
+									"type": "String"
+								},
+								"sink": {
+									"name": "survey_source"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Orc1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSynapseAnalyticsTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

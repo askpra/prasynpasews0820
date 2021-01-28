@@ -1,0 +1,132 @@
+{
+	"name": "AzureSynapseAnalyticsTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "prasynpasews0820-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "response_id",
+				"type": "varchar"
+			},
+			{
+				"name": "survey_id",
+				"type": "varchar"
+			},
+			{
+				"name": "total_time",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "response_status",
+				"type": "varchar"
+			},
+			{
+				"name": "ticket_id",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "source",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ct",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "created_date",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "modified_date",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "support_experience_rating_raw",
+				"type": "varchar"
+			},
+			{
+				"name": "support_experience_rating",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "support_experience_sentiment_raw",
+				"type": "varchar"
+			},
+			{
+				"name": "dissatisfied_reason",
+				"type": "varchar"
+			},
+			{
+				"name": "dissatisfied_reason_text_raw",
+				"type": "varchar"
+			},
+			{
+				"name": "dissatisfied_reason_text_sentiment_raw",
+				"type": "varchar"
+			},
+			{
+				"name": "satisfied_reason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "satisfied_reason_text",
+				"type": "varchar"
+			},
+			{
+				"name": "satisfied_reason_text_sentiment_raw",
+				"type": "varchar"
+			},
+			{
+				"name": "open_ended_response",
+				"type": "varchar"
+			},
+			{
+				"name": "open_ended_response_sentiment_raw",
+				"type": "varchar"
+			},
+			{
+				"name": "follow_up",
+				"type": "varchar"
+			},
+			{
+				"name": "timely_help",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "caring_reps",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "resolution",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "easy_access",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "survey_source",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "service_support_analytics",
+			"table": "support_surveys"
+		}
+	}
+}
