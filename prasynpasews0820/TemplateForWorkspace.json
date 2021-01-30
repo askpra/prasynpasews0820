@@ -341,6 +341,442 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/konstantin')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "OrcSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "SqlDWSink",
+								"allowPolyBase": true,
+								"polyBaseSettings": {
+									"rejectValue": 0,
+									"rejectType": "value",
+									"useTypeDefault": true
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "response_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "response_id"
+										}
+									},
+									{
+										"source": {
+											"name": "survey_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "survey_id"
+										}
+									},
+									{
+										"source": {
+											"name": "total_time",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "total_time"
+										}
+									},
+									{
+										"source": {
+											"name": "response_status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "response_status"
+										}
+									},
+									{
+										"source": {
+											"name": "ticket_id",
+											"type": "Int64"
+										},
+										"sink": {
+											"name": "ticket_id"
+										}
+									},
+									{
+										"source": {
+											"name": "source",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "source"
+										}
+									},
+									{
+										"source": {
+											"name": "ct",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "ct"
+										}
+									},
+									{
+										"source": {
+											"name": "created_date",
+											"type": "DateTimeOffset"
+										},
+										"sink": {
+											"name": "created_date"
+										}
+									},
+									{
+										"source": {
+											"name": "modified_date",
+											"type": "DateTimeOffset"
+										},
+										"sink": {
+											"name": "modified_date"
+										}
+									},
+									{
+										"source": {
+											"name": "support_experience_rating_raw",
+											"type": "String"
+										},
+										"sink": {
+											"name": "support_experience_rating_raw"
+										}
+									},
+									{
+										"source": {
+											"name": "support_experience_rating",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "support_experience_rating"
+										}
+									},
+									{
+										"source": {
+											"name": "support_experience_sentiment_raw",
+											"type": "String"
+										},
+										"sink": {
+											"name": "support_experience_sentiment_raw"
+										}
+									},
+									{
+										"source": {
+											"name": "dissatisfied_reason",
+											"type": "String"
+										},
+										"sink": {
+											"name": "dissatisfied_reason"
+										}
+									},
+									{
+										"source": {
+											"name": "dissatisfied_reason_text_raw",
+											"type": "String"
+										},
+										"sink": {
+											"name": "dissatisfied_reason_text_raw"
+										}
+									},
+									{
+										"source": {
+											"name": "dissatisfied_reason_text_sentiment_raw",
+											"type": "String"
+										},
+										"sink": {
+											"name": "dissatisfied_reason_text_sentiment_raw"
+										}
+									},
+									{
+										"source": {
+											"name": "satisfied_reason"
+										},
+										"sink": {
+											"name": "satisfied_reason"
+										}
+									},
+									{
+										"source": {
+											"name": "satisfied_reason_text",
+											"type": "String"
+										},
+										"sink": {
+											"name": "satisfied_reason_text"
+										}
+									},
+									{
+										"source": {
+											"name": "satisfied_reason_text_sentiment_raw",
+											"type": "String"
+										},
+										"sink": {
+											"name": "satisfied_reason_text_sentiment_raw"
+										}
+									},
+									{
+										"source": {
+											"name": "open_ended_response",
+											"type": "String"
+										},
+										"sink": {
+											"name": "open_ended_response"
+										}
+									},
+									{
+										"source": {
+											"name": "open_ended_response_sentiment_raw",
+											"type": "String"
+										},
+										"sink": {
+											"name": "open_ended_response_sentiment_raw"
+										}
+									},
+									{
+										"source": {
+											"name": "follow_up",
+											"type": "String"
+										},
+										"sink": {
+											"name": "follow_up"
+										}
+									},
+									{
+										"source": {
+											"name": "timely_help",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "timely_help"
+										}
+									},
+									{
+										"source": {
+											"name": "caring_reps",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "caring_reps"
+										}
+									},
+									{
+										"source": {
+											"name": "resolution",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "resolution"
+										}
+									},
+									{
+										"source": {
+											"name": "easy_access",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "easy_access"
+										}
+									},
+									{
+										"source": {
+											"name": "survey_source",
+											"type": "String"
+										},
+										"sink": {
+											"name": "survey_source"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Orc1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSynapseAnalyticsTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/Orc1')]",
+				"[concat(variables('workspaceId'), '/datasets/AzureSynapseAnalyticsTable1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AzureSynapseAnalyticsTable1')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "prasynpasews0820-WorkspaceDefaultSqlServer",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "response_id",
+						"type": "varchar"
+					},
+					{
+						"name": "survey_id",
+						"type": "varchar"
+					},
+					{
+						"name": "total_time",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "response_status",
+						"type": "varchar"
+					},
+					{
+						"name": "ticket_id",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "source",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ct",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "created_date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "modified_date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "support_experience_rating_raw",
+						"type": "varchar"
+					},
+					{
+						"name": "support_experience_rating",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "support_experience_sentiment_raw",
+						"type": "varchar"
+					},
+					{
+						"name": "dissatisfied_reason",
+						"type": "varchar"
+					},
+					{
+						"name": "dissatisfied_reason_text_raw",
+						"type": "varchar"
+					},
+					{
+						"name": "dissatisfied_reason_text_sentiment_raw",
+						"type": "varchar"
+					},
+					{
+						"name": "satisfied_reason",
+						"type": "nvarchar"
+					},
+					{
+						"name": "satisfied_reason_text",
+						"type": "varchar"
+					},
+					{
+						"name": "satisfied_reason_text_sentiment_raw",
+						"type": "varchar"
+					},
+					{
+						"name": "open_ended_response",
+						"type": "varchar"
+					},
+					{
+						"name": "open_ended_response_sentiment_raw",
+						"type": "varchar"
+					},
+					{
+						"name": "follow_up",
+						"type": "varchar"
+					},
+					{
+						"name": "timely_help",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "caring_reps",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "resolution",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "easy_access",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "survey_source",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "service_support_analytics",
+					"table": "support_surveys"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/prasynpasews0820-WorkspaceDefaultSqlServer')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/DataflowDwhtable')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
@@ -471,6 +907,140 @@
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/linkedServices/AzureSynapseAnalytics1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Orc1')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "prasynpasews0820-WorkspaceDefaultStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Orc",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "sampleorcfile.orc",
+						"folderPath": "CustomerCases/konstantin",
+						"fileSystem": "prasynapsefs0820"
+					},
+					"enablePhysicalSchema": true
+				},
+				"schema": [
+					{
+						"type": "STRING",
+						"name": "response_id"
+					},
+					{
+						"type": "STRING",
+						"name": "survey_id"
+					},
+					{
+						"type": "INT",
+						"name": "total_time"
+					},
+					{
+						"type": "STRING",
+						"name": "response_status"
+					},
+					{
+						"type": "LONG",
+						"name": "ticket_id"
+					},
+					{
+						"type": "INT",
+						"name": "source"
+					},
+					{
+						"type": "INT",
+						"name": "ct"
+					},
+					{
+						"type": "TIMESTAMP",
+						"name": "created_date"
+					},
+					{
+						"type": "TIMESTAMP",
+						"name": "modified_date"
+					},
+					{
+						"type": "STRING",
+						"name": "support_experience_rating_raw"
+					},
+					{
+						"type": "INT",
+						"name": "support_experience_rating"
+					},
+					{
+						"type": "STRING",
+						"name": "support_experience_sentiment_raw"
+					},
+					{
+						"type": "STRING",
+						"name": "dissatisfied_reason"
+					},
+					{
+						"type": "STRING",
+						"name": "dissatisfied_reason_text_raw"
+					},
+					{
+						"type": "STRING",
+						"name": "dissatisfied_reason_text_sentiment_raw"
+					},
+					{
+						"items": {
+							"type": "STRING"
+						},
+						"type": "LIST",
+						"name": "satisfied_reason"
+					},
+					{
+						"type": "STRING",
+						"name": "satisfied_reason_text"
+					},
+					{
+						"type": "STRING",
+						"name": "satisfied_reason_text_sentiment_raw"
+					},
+					{
+						"type": "STRING",
+						"name": "open_ended_response"
+					},
+					{
+						"type": "STRING",
+						"name": "open_ended_response_sentiment_raw"
+					},
+					{
+						"type": "STRING",
+						"name": "follow_up"
+					},
+					{
+						"type": "INT",
+						"name": "timely_help"
+					},
+					{
+						"type": "INT",
+						"name": "caring_reps"
+					},
+					{
+						"type": "INT",
+						"name": "resolution"
+					},
+					{
+						"type": "INT",
+						"name": "easy_access"
+					},
+					{
+						"type": "STRING",
+						"name": "survey_source"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/prasynpasews0820-WorkspaceDefaultStorage')]"
 			]
 		},
 		{
@@ -996,6 +1566,25 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 2')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "SET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\n\nCREATE TABLE [service_support_analytics].[support_surveys]\n( \n\t[response_id] [varchar](4000)  NULL,\n\t[survey_id] [varchar](4000)  NULL,\n\t[total_time] [int]  NULL,\n\t[response_status] [varchar](4000)  NULL,\n\t[ticket_id] [bigint]  NULL,\n\t[source] [int]  NULL,\n\t[ct] [int]  NULL,\n\t[created_date] [datetime2](7)  NULL,\n\t[modified_date] [datetime2](7)  NULL,\n\t[support_experience_rating_raw] [varchar](4000)  NULL,\n\t[support_experience_rating] [int]  NULL,\n\t[support_experience_sentiment_raw] [varchar](4000)  NULL,\n\t[dissatisfied_reason] [varchar](4000)  NULL,\n\t[dissatisfied_reason_text_raw] [varchar](4000)  NULL,\n\t[dissatisfied_reason_text_sentiment_raw] [varchar](4000)  NULL,\n\t[satisfied_reason] [nvarchar](max)  NULL,\n\t[satisfied_reason_text] [varchar](4000)  NULL,\n\t[satisfied_reason_text_sentiment_raw] [varchar](4000)  NULL,\n\t[open_ended_response] [varchar](4000)  NULL,\n\t[open_ended_response_sentiment_raw] [varchar](4000)  NULL,\n\t[follow_up] [varchar](4000)  NULL,\n\t[timely_help] [int]  NULL,\n\t[caring_reps] [int]  NULL,\n\t[resolution] [int]  NULL,\n\t[easy_access] [int]  NULL,\n\t[survey_source] [varchar](4000)  NULL\n)\nWITH\n(\n\tDISTRIBUTION = ROUND_ROBIN,\n\tCLUSTERED INDEX \n\t(\n\t\t[response_id] ASC\n\t)\n)\nGO",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"poolName": "prasynapsep0820",
+						"databaseName": "prasynapsep0820"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/copy into example')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
@@ -1068,6 +1657,232 @@
 					}
 				},
 				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/orc file failure')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "DROP TABLE service_support_analytics.support_surveys\nCREATE TABLE service_support_analytics.support_surveys (\n    response_id varchar(8000),\n    survey_id varchar(8000),\n    total_time integer,\n    response_status varchar(8000),\n    ticket_id bigint,\n    source integer,\n    ct integer,\n    created_date datetime2,\n    modified_date datetime2,\n    support_experience_rating_raw varchar(8000),\n    support_experience_rating integer,\n    support_experience_sentiment_raw varchar(8000),\n    dissatisfied_reason varchar(8000),\n    dissatisfied_reason_text_raw varchar(8000),\n    dissatisfied_reason_text_sentiment_raw varchar(8000),\n   -- satisfied_reason varchar(8000),\n    satisfied_reason_text varchar(8000),\n    satisfied_reason_text_sentiment_raw varchar(8000),\n    open_ended_response varchar(8000),\n    open_ended_response_sentiment_raw varchar(8000),\n    follow_up varchar(8000),\n    timely_help integer,\n    caring_reps integer,\n    resolution integer,\n    easy_access integer,\n    survey_source varchar(8000)\n )\n\nhttps://prasynapsesa0820.blob.core.windows.net/prasynapsefs0820/CustomerCases/konstantin/sampleorcfile.orc\n\nCOPY INTO service_support_analytics.support_surveys\nFROM 'https://prasynapsesa0820.dfs.core.windows.net/prasynapsefs0820/CustomerCases/konstantin'\nWITH (\n    FILE_FORMAT = ORC_Format, CREDENTIAL = (IDENTITY = 'Managed Identity')\n    )  \n\n    SELECT * FROM [service_support_analytics].[support_surveys2]",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"poolName": "prasynapsep0820",
+						"databaseName": "prasynapsep0820"
+					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/ORC file working scenario')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "sparkpool",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1",
+						"state": {}
+					},
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "sql"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/f2dd0e77-2d14-42d1-b56e-4a7dfdac2cba/resourceGroups/prasynapsergnew/providers/Microsoft.Synapse/workspaces/prasynpasews0820/bigDataPools/sparkpool",
+						"name": "sparkpool",
+						"type": "Spark",
+						"endpoint": "https://prasynpasews0820.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkpool",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "2.4",
+						"nodeCount": 10,
+						"cores": 4,
+						"memory": 28,
+						"automaticScaleJobs": false
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"collapsed": false
+						},
+						"source": [
+							"CREATE TABLE orcfile\r\n",
+							"USING ORC\r\n",
+							"LOCATION \"abfss://prasynapsefs0820@prasynapsesa0820.dfs.core.windows.net/CustomerCases/konstantin\""
+						],
+						"outputs": [],
+						"execution_count": 2
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"select count(*) from orcfile"
+						],
+						"outputs": [],
+						"execution_count": 15
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"select * from orcfile"
+						],
+						"outputs": [],
+						"execution_count": 14
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"desc orcfile"
+						],
+						"outputs": [],
+						"execution_count": 34
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "python"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%pyspark\r\n",
+							"df = spark.sql(\"\"\"\r\n",
+							"   SELECT response_id, survey_id, total_time, response_status, ticket_id, source, ct, created_date, modified_date, support_experience_rating_raw, \r\n",
+							"   support_experience_rating, support_experience_sentiment_raw, dissatisfied_reason, dissatisfied_reason_text_raw, dissatisfied_reason_text_sentiment_raw, \r\n",
+							"   satisfied_reason_text, satisfied_reason_text_sentiment_raw, open_ended_response, open_ended_response_sentiment_raw, follow_up, timely_help, caring_reps, \r\n",
+							"   resolution, easy_access, survey_source FROM orcfile\r\n",
+							"\"\"\") \r\n",
+							"display(df)\r\n",
+							"df.write.saveAsTable(\"support_surveys\")"
+						],
+						"outputs": [],
+						"execution_count": 30
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "scala"
+							},
+							"collapsed": true
+						},
+						"source": [
+							"%%spark\r\n",
+							"val df = spark.sql(\"SELECT * FROM support_surveys\")\r\n",
+							"df.write.sqlanalytics(\"prasynapsep0820.service_support_analytics.support_surveys2\", Constants.INTERNAL )"
+						],
+						"outputs": [],
+						"execution_count": 32
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"display(df)"
+						],
+						"outputs": [],
+						"execution_count": 25
+					}
+				]
 			},
 			"dependsOn": []
 		},
