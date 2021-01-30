@@ -21,6 +21,9 @@
 		},
 		"metadata": {
 			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
 			"kernelspec": {
 				"name": "synapse_pyspark",
 				"display_name": "Synapse PySpark"

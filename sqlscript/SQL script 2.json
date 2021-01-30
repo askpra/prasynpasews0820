@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "SET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\n\nCREATE TABLE [service_support_analytics].[support_surveys]\n( \n\t[response_id] [varchar](4000)  NULL,\n\t[survey_id] [varchar](4000)  NULL,\n\t[total_time] [int]  NULL,\n\t[response_status] [varchar](4000)  NULL,\n\t[ticket_id] [bigint]  NULL,\n\t[source] [int]  NULL,\n\t[ct] [int]  NULL,\n\t[created_date] [datetime2](7)  NULL,\n\t[modified_date] [datetime2](7)  NULL,\n\t[support_experience_rating_raw] [varchar](4000)  NULL,\n\t[support_experience_rating] [int]  NULL,\n\t[support_experience_sentiment_raw] [varchar](4000)  NULL,\n\t[dissatisfied_reason] [varchar](4000)  NULL,\n\t[dissatisfied_reason_text_raw] [varchar](4000)  NULL,\n\t[dissatisfied_reason_text_sentiment_raw] [varchar](4000)  NULL,\n\t[satisfied_reason] [nvarchar](max)  NULL,\n\t[satisfied_reason_text] [varchar](4000)  NULL,\n\t[satisfied_reason_text_sentiment_raw] [varchar](4000)  NULL,\n\t[open_ended_response] [varchar](4000)  NULL,\n\t[open_ended_response_sentiment_raw] [varchar](4000)  NULL,\n\t[follow_up] [varchar](4000)  NULL,\n\t[timely_help] [int]  NULL,\n\t[caring_reps] [int]  NULL,\n\t[resolution] [int]  NULL,\n\t[easy_access] [int]  NULL,\n\t[survey_source] [varchar](4000)  NULL\n)\nWITH\n(\n\tDISTRIBUTION = ROUND_ROBIN,\n\tCLUSTERED INDEX \n\t(\n\t\t[response_id] ASC\n\t)\n)\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "prasynapsep0820",
+				"databaseName": "prasynapsep0820"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
