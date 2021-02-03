@@ -128,5 +128,6 @@
 			"schema": "service_support_analytics",
 			"table": "support_surveys"
 		}
-	}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
 }

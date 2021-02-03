@@ -5,7 +5,7 @@
 		"annotations": [],
 		"type": "AzureSqlDW",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=prasynpasews0820.sql.azuresynapse.net;Initial Catalog=prasynapsep0820"
+			"connectionString": ""
 		},
 		"connectVia": {
 			"referenceName": "AutoResolveIntegrationRuntime",

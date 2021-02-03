@@ -125,5 +125,6 @@
 				"name": "survey_source"
 			}
 		]
-	}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
 }

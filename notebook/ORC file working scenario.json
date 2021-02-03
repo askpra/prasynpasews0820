@@ -44,9 +44,8 @@
 				"nodeCount": 10,
 				"cores": 4,
 				"memory": 28,
-				"automaticScaleJobs": false
-			},
-			"sessionKeepAliveTimeout": 30
+				"extraHeader": null
+			}
 		},
 		"cells": [
 			{
@@ -59,6 +58,7 @@
 					"USING ORC\r\n",
 					"LOCATION \"abfss://prasynapsefs0820@prasynapsesa0820.dfs.core.windows.net/CustomerCases/konstantin\""
 				],
+				"attachments": null,
 				"execution_count": 2
 			},
 			{
@@ -78,6 +78,7 @@
 				"source": [
 					"select count(*) from orcfile"
 				],
+				"attachments": null,
 				"execution_count": 15
 			},
 			{
@@ -97,6 +98,7 @@
 				"source": [
 					"select * from orcfile"
 				],
+				"attachments": null,
 				"execution_count": 14
 			},
 			{
@@ -116,6 +118,7 @@
 				"source": [
 					"desc orcfile"
 				],
+				"attachments": null,
 				"execution_count": 34
 			},
 			{
@@ -146,6 +149,7 @@
 					"display(df)\r\n",
 					"df.write.saveAsTable(\"support_surveys\")"
 				],
+				"attachments": null,
 				"execution_count": 30
 			},
 			{
@@ -170,6 +174,7 @@
 					"val df = spark.sql(\"SELECT * FROM support_surveys\")\r\n",
 					"df.write.sqlanalytics(\"prasynapsep0820.service_support_analytics.support_surveys2\", Constants.INTERNAL )"
 				],
+				"attachments": null,
 				"execution_count": 32
 			},
 			{
@@ -189,6 +194,7 @@
 				"source": [
 					"display(df)"
 				],
+				"attachments": null,
 				"execution_count": 25
 			}
 		]
