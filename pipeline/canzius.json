@@ -1,0 +1,199 @@
+{
+	"name": "canzius",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"sink": {
+						"type": "SqlPoolSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Id",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "Identifier",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Identifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Created",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "Created",
+									"type": "DateTimeOffset"
+								}
+							},
+							{
+								"source": {
+									"name": "Updated",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "Updated",
+									"type": "DateTimeOffset"
+								}
+							},
+							{
+								"source": {
+									"name": "Expires",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "Expires",
+									"type": "DateTimeOffset"
+								}
+							},
+							{
+								"source": {
+									"name": "Anonymized",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "Anonymized",
+									"type": "DateTimeOffset"
+								}
+							},
+							{
+								"source": {
+									"name": "CommitRequested",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CommitRequested",
+									"type": "DateTimeOffset"
+								}
+							},
+							{
+								"source": {
+									"name": "CommitCompleted",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CommitCompleted",
+									"type": "DateTimeOffset"
+								}
+							},
+							{
+								"source": {
+									"name": "CommitReference",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CommitReference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CommitErrorCode",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CommitErrorCode",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "CommitErrorDescription",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CommitErrorDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Deleted",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "Deleted",
+									"type": "DateTimeOffset"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderId",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "OrderId",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "Data",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Data",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ExternalReference",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ExternalReference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RowVersion",
+									"type": "Byte[]"
+								},
+								"sink": {
+									"name": "RowVersion",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"outputs": [
+					{
+						"referenceName": "CanziusTable",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

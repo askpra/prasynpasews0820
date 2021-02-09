@@ -1,0 +1,87 @@
+{
+	"name": "CanziusTable",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Identifier",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Created",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Expires",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Anonymized",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "CommitRequested",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "CommitCompleted",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "CommitReference",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CommitErrorCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CommitErrorDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Deleted",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "OrderId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Data",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExternalReference",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "canziusparquet"
+		},
+		"sqlPool": {
+			"referenceName": "prasynapsep0820",
+			"type": "SqlPoolReference"
+		}
+	}
+}

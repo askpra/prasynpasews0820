@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 4",
+	"properties": {
+		"content": {
+			"query": "SET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\nCREATE TABLE [dbo].[NEXT_Basket]\n(\n    [Id] [int] NOT NULL,\n    [Identifier] [nvarchar](128) NOT NULL,\n    [Created] [datetimeoffset](3) NOT NULL,\n    [Updated] [datetimeoffset](3) NOT NULL,\n    [Expires] [datetimeoffset](3) NULL,\n    [Anonymized] [datetimeoffset](3) NULL,\n    [CommitRequested] [datetimeoffset](3) NULL,\n    [CommitCompleted] [datetimeoffset](3) NULL,\n    [CommitReference] [nvarchar](128) NULL,\n    [CommitErrorCode] [int] NOT NULL,\n    [CommitErrorDescription] [nvarchar](2048) NULL,\n    [Deleted] [datetimeoffset](3) NULL,\n    [OrderId] [bigint] NOT NULL,\n    [Data] [nvarchar](1000) NULL,\n    [ExternalReference] [nvarchar](128) NULL,\n    [RowVersion] [binary](8) NOT NULL\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,\n    CLUSTERED COLUMNSTORE INDEX\n)\nGO\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "prasynapsep0820",
+				"databaseName": "prasynapsep0820"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

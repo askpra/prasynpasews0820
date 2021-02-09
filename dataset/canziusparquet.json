@@ -1,0 +1,85 @@
+{
+	"name": "canziusparquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "prasynpasews0820-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "CustomerCases/canzius",
+				"fileSystem": "prasynapsefs0820"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Id",
+				"type": "INT32"
+			},
+			{
+				"name": "Identifier",
+				"type": "UTF8"
+			},
+			{
+				"name": "Created",
+				"type": "INT96"
+			},
+			{
+				"name": "Updated",
+				"type": "INT96"
+			},
+			{
+				"name": "Expires",
+				"type": "INT96"
+			},
+			{
+				"name": "Anonymized",
+				"type": "INT96"
+			},
+			{
+				"name": "CommitRequested",
+				"type": "INT96"
+			},
+			{
+				"name": "CommitCompleted",
+				"type": "INT96"
+			},
+			{
+				"name": "CommitReference",
+				"type": "UTF8"
+			},
+			{
+				"name": "CommitErrorCode",
+				"type": "INT32"
+			},
+			{
+				"name": "CommitErrorDescription",
+				"type": "UTF8"
+			},
+			{
+				"name": "Deleted",
+				"type": "INT96"
+			},
+			{
+				"name": "OrderId",
+				"type": "INT64"
+			},
+			{
+				"name": "Data",
+				"type": "UTF8"
+			},
+			{
+				"name": "ExternalReference",
+				"type": "UTF8"
+			},
+			{
+				"name": "RowVersion",
+				"type": "BINARY"
+			}
+		]
+	}
+}
