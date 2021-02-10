@@ -19,19 +19,6 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "EmployeeID",
-				"type": "String"
-			},
-			{
-				"name": "EmployeeName",
-				"type": "String"
-			},
-			{
-				"name": "Salary",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
