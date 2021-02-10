@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 6",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'prasynapsefs0820_prasynapsesa0820_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [prasynapsefs0820_prasynapsesa0820_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://prasynapsesa0820.dfs.core.windows.net/prasynapsefs0820', \n\t)\nGo\n\nCREATE EXTERNAL TABLE dbo.employeeparquetlength (\n\t[EmployeeID] int,\n\t[EmployeeName] varchar(8000),\n\t[Salary] int\n\t)\n\tWITH (\n\tLOCATION = 'CustomerCases/debbie/employeeparquetlength/part-00000-049748ab-b15a-4d1b-81c0-eeedaf93164d-c000.snappy.parquet',\n\tDATA_SOURCE = [prasynapsefs0820_prasynapsesa0820_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM dbo.employeeparquetlength\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "ondemanddb"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

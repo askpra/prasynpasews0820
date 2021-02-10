@@ -1,0 +1,16 @@
+{
+	"name": "debbie CSV to parquet",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP 100 *\nFROM OPENROWSET(\n        BULK 'prasynapsefs0820/CustomerCases/debbie/employee', --https://prasynapsesa.dfs.core.windows.net/misc/employee/Samplesource.csv\n        FORMAT = 'CSV',\n        DATA_SOURCE = 'prasynapsews0820_ds',\n        FIELDTERMINATOR  = '|',\n        FIRSTROW = 2\n    )\nWITH (\n[EmployeeID] INT ,\n[EmployeeName] VARCHAR(30),\n[Salary] INT) [r]\n\nCREATE EXTERNAL FILE FORMAT [CSVfileformat] WITH\n(\n\tFORMAT_TYPE = DELIMITEDTEXT,\n    FORMAT_OPTIONS(\n          FIELD_TERMINATOR = '|',\n          FIRST_ROW = 2)\n)\n\n\n\nCREATE EXTERNAL TABLE [dbo].[debbietable]\n(\n[EmployeeID] INT ,\n[EmployeeName] VARCHAR(30),\n[Salary] INT\n)\nWITH\n(\n\tLOCATION = 'prasynapsefs0820/CustomerCases/debbie/employee',\n\tDATA_SOURCE = [prasynapsews0820_ds],\n\tFILE_FORMAT = [CSVfileformat]\n)\n\nSELECT * FROm [dbo].[debbietable]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "ondemanddb"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
