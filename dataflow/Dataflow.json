@@ -26,7 +26,7 @@
 					"name": "DerivedColumn1"
 				}
 			],
-			"script": "source(output(\n\t\tEmployeeID as string,\n\t\tEmployeeName as string,\n\t\tSalary as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(EmployeeID = toInteger(EmployeeID),\n\t\tSalary = toInteger(Salary),\n\t\tEmployeeName = toString(EmployeeName)) ~> DerivedColumn1\nDerivedColumn1 sink(input(\n\t\tEmployeeID as string,\n\t\tEmployeeName as string,\n\t\tSalary as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+			"script": "source(output(\n\t\tEmployeeID as integer,\n\t\tEmployeeName as string,\n\t\tSalary as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(EmployeeID = ERROR_FUNCTION(''),\n\t\tEmployeeName = ERROR_FUNCTION(''),\n\t\tSalary = ERROR_FUNCTION('')) ~> DerivedColumn1\nDerivedColumn1 sink(input(\n\t\tEmployeeID as string,\n\t\tEmployeeName as string,\n\t\tSalary as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 		}
 	}
 }
