@@ -1,0 +1,128 @@
+{
+	"name": "DebbiePooltable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "SMART_Claims_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "COMPANY",
+				"type": "varchar"
+			},
+			{
+				"name": "CLAIMNUMBER",
+				"type": "varchar"
+			},
+			{
+				"name": "POLICYNUMBER",
+				"type": "varchar"
+			},
+			{
+				"name": "NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "NEEDS_REVIEWED",
+				"type": "varchar"
+			},
+			{
+				"name": "RENEWAL_DATE",
+				"type": "date"
+			},
+			{
+				"name": "CANCEL_DATE",
+				"type": "date"
+			},
+			{
+				"name": "REASON_CANCELLED",
+				"type": "varchar"
+			},
+			{
+				"name": "TOTAL_LOSS",
+				"type": "varchar"
+			},
+			{
+				"name": "INCIDENTDATEID",
+				"type": "varchar"
+			},
+			{
+				"name": "STATUS",
+				"type": "varchar"
+			},
+			{
+				"name": "LINETYPE_CODES",
+				"type": "varchar"
+			},
+			{
+				"name": "CLAIMDESCRIPTION",
+				"type": "varchar"
+			},
+			{
+				"name": "CAT_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "ADJUSTER",
+				"type": "varchar"
+			},
+			{
+				"name": "DRIVERNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "COUNTY_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "STATE",
+				"type": "varchar"
+			},
+			{
+				"name": "POLICY_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "LOSS_GREATER_THAN_1200",
+				"type": "varchar"
+			},
+			{
+				"name": "AGENT_NUMBER",
+				"type": "varchar"
+			},
+			{
+				"name": "AGENCY",
+				"type": "varchar"
+			},
+			{
+				"name": "AMOUNT_PAID",
+				"type": "varchar"
+			},
+			{
+				"name": "AT_FAULT",
+				"type": "varchar"
+			},
+			{
+				"name": "EXTRACT_DATE",
+				"type": "date"
+			},
+			{
+				"name": "DATATIMESTAMP",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SMART_Claims"
+		}
+	}
+}

@@ -1,0 +1,328 @@
+{
+	"name": "Debbie parquet to pool",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "COMPANY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COMPANY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLAIMNUMBER",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLAIMNUMBER",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "POLICYNUMBER",
+									"type": "String"
+								},
+								"sink": {
+									"name": "POLICYNUMBER",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NEEDS_REVIEWED",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NEEDS_REVIEWED",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RENEWAL_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "RENEWAL_DATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "CANCEL_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CANCEL_DATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "REASON_CANCELLED",
+									"type": "String"
+								},
+								"sink": {
+									"name": "REASON_CANCELLED",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TOTAL_LOSS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TOTAL_LOSS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INCIDENTDATEID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INCIDENTDATEID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STATUS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LINETYPE_CODES",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LINETYPE_CODES",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLAIMDESCRIPTION",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLAIMDESCRIPTION",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CAT_CODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CAT_CODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ADJUSTER",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADJUSTER",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DRIVERNAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DRIVERNAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COUNTY_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COUNTY_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STATE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "POLICY_TYPE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "POLICY_TYPE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOSS_GREATER_THAN_1200",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOSS_GREATER_THAN_1200",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AGENT_NUMBER",
+									"type": "String"
+								},
+								"sink": {
+									"name": "AGENT_NUMBER",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AGENCY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "AGENCY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AMOUNT_PAID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "AMOUNT_PAID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AT_FAULT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "AT_FAULT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EXTRACT_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "EXTRACT_DATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "SMART_Claims_ID",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "SMART_Claims_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "DATATIMESTAMP",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DATATIMESTAMP",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DebbieParquet",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DebbiePooltable",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

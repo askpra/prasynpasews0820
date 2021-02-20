@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 8",
+	"properties": {
+		"content": {
+			"query": "SELECT [COMPANY]\n,[CLAIMNUMBER]\n,[POLICYNUMBER]\n,[NAME]\n,[NEEDS_REVIEWED]\n,[RENEWAL_DATE]\n,[CANCEL_DATE]\n,[REASON_CANCELLED]\n,[TOTAL_LOSS]\n,[INCIDENTDATEID]\n,[STATUS]\n,[LINETYPE_CODES]\n,[CLAIMDESCRIPTION]\n,[CAT_CODE]\n,[ADJUSTER]\n,[DRIVERNAME]\n,[COUNTY_NAME]\n,[STATE]\n,[POLICY_TYPE]\n,[LOSS_GREATER_THAN_1200]\n,[AGENT_NUMBER]\n,[AGENCY]\n,[AMOUNT_PAID]\n,[AT_FAULT]\n,[EXTRACT_DATE]\n,[SMART_Claims_ID]\n,[DATATIMESTAMP]\n FROM [dbo].[debbieparquetnew]\n\n set nocount on;\ndeclare @TableName varchar(150) = 'TableName';\ndeclare @Schema varchar(20) = 'TableSchema';\ndeclare @Columns varchar(max);\ndeclare @Unpivot varchar(max);\ndeclare @SQL varchar(max);\n\nselect  @Columns = STUFF((\nselect  ',max(len(replace([' + COLUMN_NAME + '],'' '',''_'')))[' + COLUMN_NAME + '/' \n        + isnull(ltrim(CHARACTER_MAXIMUM_LENGTH),DATA_TYPE) + ']' + CHAR(10) + CHAR(9)\nfrom    INFORMATION_SCHEMA.COLUMNS\nwhere   TABLE_SCHEMA = @Schema\n        and TABLE_NAME = @TableName\norder   by ORDINAL_POSITION\nfor XML PATH('')),1,1,'')\n\nselect  @Unpivot = STUFF((\nselect  ',[' + COLUMN_NAME + '/' + isnull(ltrim(CHARACTER_MAXIMUM_LENGTH),DATA_TYPE) + ']'\nfrom    INFORMATION_SCHEMA.COLUMNS\nwhere   TABLE_SCHEMA = @Schema\n        and TABLE_NAME = @TableName\norder   by ORDINAL_POSITION\nfor XML PATH('')),1,1,'')\n\nselect  @SQL = \n'select DataSize, ColumnName [ColumnName/Size]\nfrom    (\n        select ' + @Columns + 'from [' + @Schema + '].[' + @TableName + ']\n        )x \nunpivot (DataSize for ColumnName in (' + @Unpivot + '))p'\n\nprint (@SQL)\nexec (@SQL)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "ondemanddb"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

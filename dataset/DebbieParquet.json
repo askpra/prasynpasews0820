@@ -1,0 +1,130 @@
+{
+	"name": "DebbieParquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage23",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "part-00000-17b49fc2-6f08-4bd8-b580-a40e5dd10134-c000.snappy.parquet",
+				"folderPath": "CustomerCases/debbie",
+				"fileSystem": "prasynapsefs0820"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "COMPANY",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLAIMNUMBER",
+				"type": "UTF8"
+			},
+			{
+				"name": "POLICYNUMBER",
+				"type": "UTF8"
+			},
+			{
+				"name": "NAME",
+				"type": "UTF8"
+			},
+			{
+				"name": "NEEDS_REVIEWED",
+				"type": "UTF8"
+			},
+			{
+				"name": "RENEWAL_DATE",
+				"type": "DATE"
+			},
+			{
+				"name": "CANCEL_DATE",
+				"type": "DATE"
+			},
+			{
+				"name": "REASON_CANCELLED",
+				"type": "UTF8"
+			},
+			{
+				"name": "TOTAL_LOSS",
+				"type": "UTF8"
+			},
+			{
+				"name": "INCIDENTDATEID",
+				"type": "UTF8"
+			},
+			{
+				"name": "STATUS",
+				"type": "UTF8"
+			},
+			{
+				"name": "LINETYPE_CODES",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLAIMDESCRIPTION",
+				"type": "UTF8"
+			},
+			{
+				"name": "CAT_CODE",
+				"type": "UTF8"
+			},
+			{
+				"name": "ADJUSTER",
+				"type": "UTF8"
+			},
+			{
+				"name": "DRIVERNAME",
+				"type": "UTF8"
+			},
+			{
+				"name": "COUNTY_NAME",
+				"type": "UTF8"
+			},
+			{
+				"name": "STATE",
+				"type": "UTF8"
+			},
+			{
+				"name": "POLICY_TYPE",
+				"type": "UTF8"
+			},
+			{
+				"name": "LOSS_GREATER_THAN_1200",
+				"type": "UTF8"
+			},
+			{
+				"name": "AGENT_NUMBER",
+				"type": "UTF8"
+			},
+			{
+				"name": "AGENCY",
+				"type": "UTF8"
+			},
+			{
+				"name": "AMOUNT_PAID",
+				"type": "UTF8"
+			},
+			{
+				"name": "AT_FAULT",
+				"type": "UTF8"
+			},
+			{
+				"name": "EXTRACT_DATE",
+				"type": "DATE"
+			},
+			{
+				"name": "SMART_Claims_ID",
+				"type": "INT64"
+			},
+			{
+				"name": "DATATIMESTAMP",
+				"type": "INT96"
+			}
+		]
+	}
+}

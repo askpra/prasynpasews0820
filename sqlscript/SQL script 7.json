@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 7",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'prasynapsefs0820_prasynapsesa0820_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [prasynapsefs0820_prasynapsesa0820_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://prasynapsesa0820.dfs.core.windows.net/prasynapsefs0820', \n\t)\nGo\n\nCREATE EXTERNAL TABLE debbieparquetnew (\n\t[COMPANY] varchar(8000),\n\t[CLAIMNUMBER] varchar(8000),\n\t[POLICYNUMBER] varchar(8000),\n\t[NAME] varchar(8000),\n\t[NEEDS_REVIEWED] varchar(8000),\n\t[RENEWAL_DATE] date,\n\t[CANCEL_DATE] date,\n\t[REASON_CANCELLED] varchar(8000),\n\t[TOTAL_LOSS] varchar(8000),\n\t[INCIDENTDATEID] varchar(8000),\n\t[STATUS] varchar(8000),\n\t[LINETYPE_CODES] varchar(8000),\n\t[CLAIMDESCRIPTION] varchar(8000),\n\t[CAT_CODE] varchar(8000),\n\t[ADJUSTER] varchar(8000),\n\t[DRIVERNAME] varchar(8000),\n\t[COUNTY_NAME] varchar(8000),\n\t[STATE] varchar(8000),\n\t[POLICY_TYPE] varchar(8000),\n\t[LOSS_GREATER_THAN_1200] varchar(8000),\n\t[AGENT_NUMBER] varchar(8000),\n\t[AGENCY] varchar(8000),\n\t[AMOUNT_PAID] varchar(8000),\n\t[AT_FAULT] varchar(8000),\n\t[EXTRACT_DATE] date,\n\t[SMART_Claims_ID] bigint,\n\t[DATATIMESTAMP] datetime2(7)\n\t)\n\tWITH (\n\tLOCATION = 'CustomerCases/debbie/part-00000-17b49fc2-6f08-4bd8-b580-a40e5dd10134-c000.snappy.parquet',\n\tDATA_SOURCE = [prasynapsefs0820_prasynapsesa0820_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM debbieparquetnew\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "ondemanddb"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
